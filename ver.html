@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title id="page-title">Sintaxis</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .article {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 2rem clamp(1.25rem, 4vw, 3rem);
+      box-shadow: var(--shadow);
+    }
+    .article h1 { color: var(--color-primary-dark); margin-top: 0; }
+    .article h2 { color: var(--color-primary-dark); }
+    .article ul, .article ol { padding-left: 1.4rem; }
+    .article p { line-height: 1.7; }
+    .back-link { display: block; max-width: 720px; margin: 0 auto 1rem; font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Sintaxis</h1>
+    <p>Material de Lengua y Literatura Castellanas — ESO y Bachillerato</p>
+  </header>
+
+  <main>
+    <a class="back-link" href="index.html">&larr; Volver a la portada</a>
+    <article class="article" id="article">
+      <p>Cargando…</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>Índice generado automáticamente a partir de la carpeta <code>materiales/</code>.</p>
+  </footer>
+
+  <script src="assets/js/markdown.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const path = params.get("path");
+      const articleEl = document.getElementById("article");
+
+      if (!path) {
+        articleEl.innerHTML = "<p>No se ha indicado ningún documento.</p>";
+      } else {
+        fetch(path, { cache: "no-store" })
+          .then((r) => {
+            if (!r.ok) throw new Error("No encontrado");
+            return r.text();
+          })
+          .then((text) => {
+            articleEl.innerHTML = window.SintaxisMarkdown.renderMarkdown(text);
+            const h1 = articleEl.querySelector("h1");
+            if (h1) document.getElementById("page-title").textContent = h1.textContent + " — Sintaxis";
+          })
+          .catch(() => {
+            articleEl.innerHTML = "<p>No se ha podido cargar este contenido.</p>";
+          });
+      }
+    })();
+  </script>
+</body>
+</html>

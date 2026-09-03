@@ -1,0 +1,341 @@
+:root {
+  --color-bg: #faf6f1;
+  --color-bg-alt: #ffffff;
+  --color-ink: #2a211c;
+  --color-ink-soft: #5c5049;
+  --color-primary: #7a1f2b;
+  --color-primary-dark: #5c1620;
+  --color-accent: #c9a24b;
+  --color-border: #e6dcd0;
+  --color-chip-bg: #f1e7da;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(42, 33, 28, 0.08), 0 1px 2px rgba(42, 33, 28, 0.06);
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Georgia", "Iowan Old Style", "Palatino Linotype", serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+header.site-header {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #fff;
+  padding: 2.5rem 1.5rem 2rem;
+  text-align: center;
+}
+
+header.site-header h1 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  letter-spacing: 0.02em;
+}
+
+header.site-header p {
+  margin: 0;
+  color: #f1e2c9;
+  font-size: 1rem;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 4rem;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0.75rem;
+  z-index: 5;
+}
+
+.toolbar input[type="search"],
+.toolbar select {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--color-ink);
+}
+
+.toolbar input[type="search"] {
+  flex: 1 1 220px;
+}
+
+.toolbar select {
+  flex: 1 1 160px;
+}
+
+.results-count {
+  color: var(--color-ink-soft);
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.curso-group {
+  margin-bottom: 2rem;
+}
+
+.curso-group h2 {
+  font-size: 1.3rem;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.9rem;
+  color: var(--color-primary-dark);
+}
+
+.bloque-group {
+  margin-bottom: 1.25rem;
+}
+
+.bloque-group h3 {
+  font-size: 1.02rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-ink-soft);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.85rem;
+}
+
+.file-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.file-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.file-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(42, 33, 28, 0.12);
+}
+
+.file-icon {
+  flex: 0 0 auto;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 8px;
+  background: var(--color-chip-bg);
+  color: var(--color-primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: system-ui, sans-serif;
+}
+
+.file-meta {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.file-title {
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-sub {
+  margin: 0.1rem 0 0;
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+  font-family: system-ui, sans-serif;
+}
+
+.tipo-chip {
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--color-chip-bg);
+  color: var(--color-primary-dark);
+  font-family: system-ui, sans-serif;
+  white-space: nowrap;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--color-ink-soft);
+  padding: 3rem 1rem;
+  font-size: 1.05rem;
+}
+
+footer.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--color-ink-soft);
+  font-size: 0.85rem;
+  font-family: system-ui, sans-serif;
+}
+
+footer.site-footer a {
+  color: var(--color-ink-soft);
+}
+
+.admin-link {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-family: system-ui, sans-serif;
+  box-shadow: var(--shadow);
+  opacity: 0.85;
+}
+
+.admin-link:hover {
+  opacity: 1;
+}
+
+/* ---- Admin page ---- */
+
+.admin-main {
+  max-width: 640px;
+}
+
+.admin-card {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+  font-family: system-ui, sans-serif;
+}
+
+.admin-card h2 {
+  font-family: Georgia, serif;
+  margin-top: 0;
+  color: var(--color-primary-dark);
+  font-size: 1.1rem;
+}
+
+.admin-card label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0.9rem 0 0.3rem;
+}
+
+.admin-card input[type="text"],
+.admin-card input[type="password"],
+.admin-card select,
+.admin-card input[type="file"] {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.admin-card small {
+  display: block;
+  color: var(--color-ink-soft);
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+}
+
+.admin-card button {
+  margin-top: 1.2rem;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: 0.65rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.admin-card button:hover {
+  background: var(--color-primary-dark);
+}
+
+.admin-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.notice {
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.notice.warn {
+  background: #fbe9c9;
+  color: #6b4b16;
+  border: 1px solid #e9c07a;
+}
+
+.notice.success {
+  background: #dff2df;
+  color: #2b5c2b;
+  border: 1px solid #9fd39f;
+}
+
+.notice.error {
+  background: #fbe0e0;
+  color: #7a2323;
+  border: 1px solid #e79a9a;
+}
+
+.status-log {
+  font-family: system-ui, monospace, monospace;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  background: #f5efe6;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  max-height: 220px;
+  overflow-y: auto;
+}

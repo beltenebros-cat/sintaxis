@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-09-03T10:02:52.581Z",
+  "cursos": {
+    "1-eso": "1º ESO",
+    "2-eso": "2º ESO",
+    "3-eso": "3º ESO",
+    "4-eso": "4º ESO",
+    "1-bach": "1º Bachillerato",
+    "2-bach": "2º Bachillerato"
+  },
+  "bloques": {
+    "gramatica": "Gramática",
+    "literatura": "Literatura",
+    "comentario-texto": "Comentario de texto",
+    "ortografia": "Ortografía",
+    "lecturas": "Lecturas",
+    "expresion-escrita": "Expresión escrita",
+    "otros": "Otros"
+  },
+  "tipos": {
+    "apuntes": "Apuntes",
+    "ejercicios": "Ejercicios",
+    "examenes": "Exámenes",
+    "presentaciones": "Presentaciones",
+    "otros": "Otros"
+  },
+  "files": []
+}

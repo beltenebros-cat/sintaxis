@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Subir material — Sintaxis</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Subir material</h1>
+    <p>Panel privado — sube archivos directamente al repositorio</p>
+  </header>
+
+  <main class="admin-main">
+    <div class="notice warn">
+      Este panel sube archivos a GitHub usando un token de acceso personal
+      que solo se guarda en <strong>este navegador</strong> (no viaja a
+      ningún otro sitio). Úsalo solo en tus propios dispositivos y revoca el
+      token si alguna vez lo compartes o pierdes el ordenador. Ver
+      instrucciones abajo.
+    </div>
+
+    <section class="admin-card">
+      <h2>1. Conexión con GitHub</h2>
+      <label for="owner">Propietario del repositorio</label>
+      <input type="text" id="owner" value="beltenebros-cat" />
+
+      <label for="repo">Repositorio</label>
+      <input type="text" id="repo" value="sintaxis" />
+
+      <label for="branch">Rama</label>
+      <input type="text" id="branch" value="main" />
+
+      <label for="token">Token de acceso personal (fine-grained)</label>
+      <input type="password" id="token" placeholder="github_pat_…" autocomplete="off" />
+      <small>
+        Se guarda solo en este navegador (localStorage), nunca se envía a
+        ningún sitio salvo a la API de GitHub. Instrucciones para crearlo
+        más abajo.
+      </small>
+
+      <button id="save-config" type="button">Guardar conexión</button>
+      <span id="config-status"></span>
+    </section>
+
+    <section class="admin-card">
+      <h2>2. Archivo a subir</h2>
+
+      <label for="curso">Curso</label>
+      <select id="curso"></select>
+
+      <label for="bloque">Bloque temático</label>
+      <select id="bloque"></select>
+
+      <label for="tipo">Tipo de recurso</label>
+      <select id="tipo"></select>
+
+      <label for="file">Archivo</label>
+      <input type="file" id="file" multiple />
+      <small>Puedes seleccionar varios archivos a la vez.</small>
+
+      <button id="upload" type="button">Subir a la web</button>
+
+      <div id="status-log" class="status-log" hidden></div>
+    </section>
+
+    <section class="admin-card">
+      <h2>Cómo crear el token de GitHub</h2>
+      <ol>
+        <li>Entra en GitHub → foto de perfil → <em>Settings</em>.</li>
+        <li><em>Developer settings</em> → <em>Personal access tokens</em> → <em>Fine-grained tokens</em> → <em>Generate new token</em>.</li>
+        <li>En <em>Repository access</em>, elige "Only select repositories" y selecciona <code>sintaxis</code>.</li>
+        <li>En <em>Permissions</em> → <em>Repository permissions</em>, pon <strong>Contents: Read and write</strong>.</li>
+        <li>Genera el token, cópialo y pégalo arriba. Guárdalo en un gestor de contraseñas por si lo necesitas de nuevo — GitHub solo lo muestra una vez.</li>
+      </ol>
+      <p>
+        Cada archivo que subas aquí crea un commit directamente en el
+        repositorio, en la misma carpeta que usarías si lo subieras a mano
+        desde la web de GitHub. El índice de la portada se regenera solo en
+        1-2 minutos.
+      </p>
+    </section>
+  </main>
+
+  <p style="text-align:center"><a href="../index.html">&larr; Volver a la portada</a></p>
+
+  <script src="../assets/js/admin.js"></script>
+</body>
+</html>

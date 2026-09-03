@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sintaxis — Lengua y Literatura</title>
+  <meta name="description" content="Materiales de Lengua y Literatura Castellanas para ESO y Bachillerato." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Sintaxis</h1>
+    <p>Material de Lengua y Literatura Castellanas — ESO y Bachillerato</p>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <input type="search" id="search" placeholder="Buscar por título o archivo…" autocomplete="off" />
+      <select id="filter-curso">
+        <option value="">Todos los cursos</option>
+      </select>
+      <select id="filter-bloque">
+        <option value="">Todos los bloques</option>
+      </select>
+      <select id="filter-tipo">
+        <option value="">Todos los tipos</option>
+      </select>
+    </div>
+
+    <p class="results-count" id="results-count"></p>
+    <div id="results"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Índice generado automáticamente a partir de la carpeta <code>materiales/</code>.</p>
+  </footer>
+
+  <a class="admin-link" href="admin/">Subir material</a>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

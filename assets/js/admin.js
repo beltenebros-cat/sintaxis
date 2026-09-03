@@ -43,6 +43,13 @@
     file: document.getElementById("file"),
     upload: document.getElementById("upload"),
     statusLog: document.getElementById("status-log"),
+    tabWrite: document.getElementById("tab-write"),
+    tabFile: document.getElementById("tab-file"),
+    panelWrite: document.getElementById("panel-write"),
+    panelFile: document.getElementById("panel-file"),
+    titulo: document.getElementById("titulo"),
+    contenido: document.getElementById("contenido"),
+    publishText: document.getElementById("publish-text"),
   };
 
   function populateSelect(select, dict) {
@@ -101,6 +108,21 @@
 
   function sanitizeFilename(name) {
     return name.replace(/[^\w.\-áéíóúÁÉÍÓÚñÑüÜ() ]/g, "").trim();
+  }
+
+  function slugify(text) {
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 80) || "sin-titulo";
+  }
+
+  function textToBase64(text) {
+    const bytes = new TextEncoder().encode(text);
+    return arrayBufferToBase64(bytes.buffer);
   }
 
   function arrayBufferToBase64(buffer) {
@@ -204,6 +226,57 @@
     els.file.value = "";
   }
 
+  async function handlePublishText() {
+    const cfg = getConfig();
+    if (!cfg.owner || !cfg.repo || !cfg.token) {
+      log("Falta configurar propietario, repositorio o token (paso 1).");
+      return;
+    }
+
+    const titulo = els.titulo.value.trim();
+    const cuerpo = els.contenido.value.trim();
+    if (!titulo || !cuerpo) {
+      log("Escribe un título y contenido antes de publicar.");
+      return;
+    }
+
+    const curso = els.curso.value;
+    const bloque = els.bloque.value;
+    const tipo = els.tipo.value;
+    const filename = `${slugify(titulo)}.md`;
+    const path = `materiales/${curso}/${bloque}/${tipo}/${filename}`;
+    const contenidoCompleto = `# ${titulo}\n\n${cuerpo}\n`;
+
+    els.publishText.disabled = true;
+    els.statusLog.hidden = false;
+    els.statusLog.textContent = "";
+    log(`Publicando "${titulo}"…`);
+
+    try {
+      const [base64, sha] = await Promise.all([
+        Promise.resolve(textToBase64(contenidoCompleto)),
+        getExistingSha(cfg, path),
+      ]);
+      await uploadFile(cfg, path, base64, sha);
+      log(`✔ Publicado en ${path}`);
+      log("Listo. La página se verá en la web en 1-2 minutos.");
+      els.titulo.value = "";
+      els.contenido.value = "";
+    } catch (err) {
+      log(`✘ Error al publicar: ${err.message}`);
+    }
+
+    els.publishText.disabled = false;
+  }
+
+  function switchTab(mode) {
+    const isWrite = mode === "write";
+    els.tabWrite.classList.toggle("active", isWrite);
+    els.tabFile.classList.toggle("active", !isWrite);
+    els.panelWrite.hidden = !isWrite;
+    els.panelFile.hidden = isWrite;
+  }
+
   populateSelect(els.curso, CURSOS);
   populateSelect(els.bloque, BLOQUES);
   populateSelect(els.tipo, TIPOS);
@@ -211,4 +284,7 @@
 
   els.saveConfig.addEventListener("click", saveConfig);
   els.upload.addEventListener("click", handleUpload);
+  els.publishText.addEventListener("click", handlePublishText);
+  els.tabWrite.addEventListener("click", () => switchTab("write"));
+  els.tabFile.addEventListener("click", () => switchTab("file"));
 })();

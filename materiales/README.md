@@ -42,6 +42,14 @@ Un examen de sintaxis de 3º ESO se guardaría en:
 materiales/3-eso/gramatica/examenes/examen-sintaxis-tema-4.pdf
 ```
 
+## Contenido escrito (recomendado)
+
+En vez de subir un PDF, se recomienda escribir el material directamente
+desde el panel `/admin`, pestaña "Escribir contenido". Esto genera un
+archivo `.md` (texto con formato sencillo) en la carpeta correcta, y la
+web lo muestra como una página normal — sin descargas — que se actualiza
+para todo el mundo en cuanto se publica.
+
 Si subes un archivo a una carpeta con un nombre que no está en las listas
 de arriba, la web lo clasificará igualmente en "Otros" dentro de ese
 curso, así que nunca se pierde ni da error — pero para mantener el

@@ -9,8 +9,8 @@
 </head>
 <body>
   <header class="site-header">
-    <h1>Subir material</h1>
-    <p>Panel privado — sube archivos directamente al repositorio</p>
+    <h1>Publicar material</h1>
+    <p>Panel privado — escribe o sube contenido directamente al repositorio</p>
   </header>
 
   <main class="admin-main">
@@ -46,7 +46,7 @@
     </section>
 
     <section class="admin-card">
-      <h2>2. Archivo a subir</h2>
+      <h2>2. Contenido</h2>
 
       <label for="curso">Curso</label>
       <select id="curso"></select>
@@ -57,11 +57,43 @@
       <label for="tipo">Tipo de recurso</label>
       <select id="tipo"></select>
 
-      <label for="file">Archivo</label>
-      <input type="file" id="file" multiple />
-      <small>Puedes seleccionar varios archivos a la vez.</small>
+      <div class="mode-tabs">
+        <button type="button" id="tab-write" class="mode-tab active">Escribir contenido</button>
+        <button type="button" id="tab-file" class="mode-tab">Subir archivo</button>
+      </div>
 
-      <button id="upload" type="button">Subir a la web</button>
+      <div id="panel-write">
+        <div class="notice success">
+          Recomendado: escribe el material directamente aquí. Se publica
+          como una página de la propia web (no un PDF que haya que
+          descargar), y todo el que entre en la web ve el contenido
+          actualizado al momento.
+        </div>
+
+        <label for="titulo">Título</label>
+        <input type="text" id="titulo" placeholder="Ej. El complemento directo" />
+
+        <label for="contenido">Contenido</label>
+        <textarea id="contenido" rows="12" placeholder="Escribe aquí. Puedes usar:&#10;# Título&#10;## Subtítulo&#10;**negrita**, *cursiva*&#10;- elemento de lista&#10;[enlace](https://...)"></textarea>
+        <small>Se admite un formato sencillo: # y ## para títulos, **negrita**, *cursiva*, listas con "- " y enlaces [texto](url).</small>
+
+        <button id="publish-text" type="button">Publicar en la web</button>
+      </div>
+
+      <div id="panel-file" hidden>
+        <div class="notice warn">
+          Usa esto solo cuando el material no pueda escribirse como texto
+          (por ejemplo una imagen o una plantilla ya maquetada). Los
+          archivos subidos aquí se descargan en vez de leerse en la propia
+          página.
+        </div>
+
+        <label for="file">Archivo</label>
+        <input type="file" id="file" multiple />
+        <small>Puedes seleccionar varios archivos a la vez.</small>
+
+        <button id="upload" type="button">Subir a la web</button>
+      </div>
 
       <div id="status-log" class="status-log" hidden></div>
     </section>

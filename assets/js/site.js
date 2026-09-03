@@ -117,9 +117,13 @@
           const li = document.createElement("li");
           const a = document.createElement("a");
           a.className = "file-card";
-          a.href = file.path;
-          a.target = "_blank";
-          a.rel = "noopener";
+          if (file.ext === "md") {
+            a.href = "ver.html?path=" + encodeURIComponent(file.path);
+          } else {
+            a.href = file.path;
+            a.target = "_blank";
+            a.rel = "noopener";
+          }
 
           const icon = document.createElement("div");
           icon.className = "file-icon";

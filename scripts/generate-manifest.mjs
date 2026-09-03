@@ -3,7 +3,7 @@
 // Convención de carpetas: materiales/<curso>/<bloque>/<tipo>/archivo.ext
 // No requiere dependencias externas.
 
-import { readdirSync, statSync, writeFileSync, existsSync } from "node:fs";
+import { readdirSync, statSync, writeFileSync, existsSync, readFileSync } from "node:fs";
 import { join, relative, extname, basename } from "node:path";
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -48,6 +48,19 @@ function humanizeTitle(filename) {
     .split(" ")
     .map((w) => (w.length > 3 ? w.charAt(0).toUpperCase() + w.slice(1) : w))
     .join(" ");
+}
+
+function titleFor(absPath, filename) {
+  if (extname(filename).toLowerCase() === ".md") {
+    try {
+      const content = readFileSync(absPath, "utf8");
+      const match = content.match(/^#\s+(.+)$/m);
+      if (match) return match[1].trim();
+    } catch {
+      /* si falla la lectura, se usa el nombre de archivo */
+    }
+  }
+  return humanizeTitle(filename);
 }
 
 function walk(dir, acc = []) {
@@ -95,7 +108,7 @@ function build() {
     return {
       path: relative(ROOT, absPath).split("\\").join("/"),
       filename,
-      title: humanizeTitle(filename),
+      title: titleFor(absPath, filename),
       ext: extname(filename).replace(".", "").toLowerCase(),
       sizeBytes: st.size,
       curso,
